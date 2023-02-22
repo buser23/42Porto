@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bsalgado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 10:51:15 by bsalgado          #+#    #+#             */
-/*   Updated: 2023/02/20 10:51:25 by bsalgado         ###   ########.fr       */
+/*   Created: 2023/02/22 12:26:03 by bsalgado          #+#    #+#             */
+/*   Updated: 2023/02/22 17:41:03 by bsalgado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
+#include <stdlib.h>
+#include <stdio.h> 
 
 int	ft_strlen(char *str)
 {
@@ -24,13 +24,41 @@ int	ft_strlen(char *str)
 	}
 	return (i);
 }
+
+void	ft_strcpy(char *dest, char *src)
+{
+	int	i;
+
+	i = 0;
+	while (src[i] != '\0')
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+}
+
+char	*ft_strdup(char *src)
+{
+	char	*p;
+	int		size;
+
+	size = ft_strlen(src) + 1;
+	p = malloc(sizeof(char) * size);
+	if (!p)
+		return (0);
+	else
+		ft_strcpy(p, src);
+	return (p);
+}
 /*
 
 int	main(void)
 {
-	char str[] = "Hello";
-
-	printf("Length: %d\n", ft_strlen(str));
+	char	s[] = "Hello";
+	char	*d = ft_strdup(s);
+	printf("Source: %s | Dest: %s | LastChar: '%c'\n", s, d, d[5]);
+	free(d);
 
 	return (0);
 }

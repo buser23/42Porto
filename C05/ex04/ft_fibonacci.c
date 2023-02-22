@@ -1,44 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_fibonacci.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bsalgado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 10:52:22 by bsalgado          #+#    #+#             */
-/*   Updated: 2023/02/20 10:52:30 by bsalgado         ###   ########.fr       */
+/*   Created: 2023/02/20 17:33:04 by bsalgado          #+#    #+#             */
+/*   Updated: 2023/02/20 17:35:59 by bsalgado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include <stdio.h>
 
-void	ft_putchar(char c)
+int	ft_fibonacci(int index)
 {
-	write(1, &c, 1);
-}
-
-void	ft_putnbr(int nb)
-{
-	long	n;
-
-	n = nb;
-	if (nb < 0)
-	{
-		ft_putchar('-');
-		n = -n;
-	}
-	if (n >= 10)
-		ft_putnbr(n / 10);
-	ft_putchar(48 + n % 10);
+	if (index < 0)
+		return (-1);
+	if (index == 0)
+		return (0);
+	if (index == 1)
+		return (1);
+	return (ft_fibonacci(index - 1) + ft_fibonacci(index - 2));
 }
 /*
 
-int main()
+int	main(void)
 {
-	ft_putnbr(-2147483648);
-
-	return (0);
+	printf("%d\n", ft_fibonacci(4));
 }
 
 */

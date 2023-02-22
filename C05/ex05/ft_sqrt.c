@@ -1,42 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bsalgado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 10:52:22 by bsalgado          #+#    #+#             */
-/*   Updated: 2023/02/20 10:52:30 by bsalgado         ###   ########.fr       */
+/*   Created: 2023/02/20 17:36:59 by bsalgado          #+#    #+#             */
+/*   Updated: 2023/02/20 17:42:41 by bsalgado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+// Max number squared inside int is 46340.
+// 46240^2 = 2147395600
+// (2^31) - 1 = 2147483647 (max int value)
+// 46341^2 = 2147488281
+
 #include <stdio.h>
 
-void	ft_putchar(char c)
+int	ft_sqrt(int nb)
 {
-	write(1, &c, 1);
-}
+	int	i;
 
-void	ft_putnbr(int nb)
-{
-	long	n;
-
-	n = nb;
-	if (nb < 0)
+	i = 1;
+	while (i * i <= nb && i <= 46340)
 	{
-		ft_putchar('-');
-		n = -n;
+		if (i * i == nb)
+			return (i);
+		else
+			i++;
 	}
-	if (n >= 10)
-		ft_putnbr(n / 10);
-	ft_putchar(48 + n % 10);
+	return (0);
 }
 /*
 
-int main()
+int 	main(void)
 {
-	ft_putnbr(-2147483648);
+	printf("%d\n", ft_sqrt(25));
 
 	return (0);
 }

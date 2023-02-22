@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bsalgado <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/20 11:14:11 by bsalgado          #+#    #+#             */
+/*   Updated: 2023/02/20 11:15:17 by bsalgado         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 #include <stdio.h>
 
@@ -14,16 +26,12 @@ int	check_error(char *str)
 	while (str[i] != '\0')
 	{
 		if (str[i] <= 32 || str[i] == 127 || str[i] == 43 || str[i] == 45)
-		{
 			return (0);
-		}
 		j = i + 1;
 		while (str[j] != '\0')
 		{
 			if (str[i] == str[j])
-			{
 				return (0);
-			}
 			j++;
 		}
 		i++;
@@ -81,7 +89,7 @@ int	ft_atoi_base(char *str, char *base)
 	nb = 0;
 	i = 0;
 	begin_len = check_error(base);
-	if (begin_len >=2)
+	if (begin_len >= 2)
 	{
 		negative = whitespaces(str, &i);
 		nb2 = nb_base(str[i], base);

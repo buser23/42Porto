@@ -1,52 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_find_next_prime.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bsalgado <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 17:00:10 by bsalgado          #+#    #+#             */
-/*   Updated: 2023/02/20 17:01:50 by bsalgado         ###   ########.fr       */
+/*   Created: 2023/02/20 18:03:46 by bsalgado          #+#    #+#             */
+/*   Updated: 2023/02/20 18:33:00 by bsalgado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include <stdio.h>
 
-int	ft_atoi(char *str)
+int	ft_is_prime(int nb)
 {
 	int	i;
-	int	sign;
-	int	result;
 
-	i = 0;
-	sign = 1;
-	result = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
-		i++;
-	while (str[i] == '-' || str[i] == '+')
+	i = 2;
+	if (nb <= 1)
+		return (0);
+	while (i <= (nb / i))
 	{
-		if (str[i] == '-')
-		{
-			sign *= -1;
-		}
-		i++;
+		if (nb % i == 0)
+			return (0);
+		else
+			i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	return (1);
+}
+
+int	ft_find_next_prime(int nb)
+{
+	while (!ft_is_prime(nb))
 	{
-		result = (result * 10) + str[i] - '0';
-		i++;
+		nb++;
 	}
-	return (result * sign);
+	return (nb);
 }
 /*
 
 int	main(void)
 {
-	char str[] = "  ----+--+1234ab567";
-	int num = ft_atoi(str);
-	printf("Result: %d\n", num);
-	
+	printf("%d -> %d\n", 15, ft_find_next_prime(15));
+
 	return (0);
 }
 
